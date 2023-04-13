@@ -1,2 +1,2 @@
 # Workflow-of-Radiomics
-This is a whole workflow of radiomics。
+This is a whole workflow of radiomics.
