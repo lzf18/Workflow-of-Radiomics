@@ -23,6 +23,7 @@ with open("./config/train_neg_id.txt", "r") as f:
 print(len(neg_id), len(pos_id))
 
 id_all = {"pos": pos_id, "neg": neg_id}
+
 for split in id_all:
     print("extract "+split+" feature.")
     features_dict = dict()
@@ -34,7 +35,8 @@ for split in id_all:
         features_dict['index'] = path
         for feature_key, feature_value in features.items():  #输出特征
             features_dict[feature_key] = feature_value
-        df.append(pd.DataFrame.from_dict(features_dict.values()).T, ignore_index=True)
+        df = pd.concat([df, pd.DataFrame.from_dict(features_dict, orient='index').T], axis=0, ignore_index=True)
     df.columns = features_dict.keys()
     df.to_csv("./feature/"+split+"_feature.csv",index=0)
+    
         
